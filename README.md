@@ -77,7 +77,7 @@ To run the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/freshcart.git
+git clone https://github.com/hager-hassan/freshcart.git
 
 # 2. Navigate to the project folder
 cd freshcart
