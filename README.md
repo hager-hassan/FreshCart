@@ -20,7 +20,7 @@ FreshCart provides a seamless shopping experience where users can:
 
 ## Live Demo
 
-[FreshCart on Netlify](https://688abc3a0dc1aba3806ff848--efreshcart.netlify.app/)
+[FreshCart on Netlify](https://688ac3f5ae27cab6904d33c6--efreshcart.netlify.app/)
 
 ---
 
