@@ -1,0 +1,46 @@
+.all-categories .swiper-pagination-bullet {
+    display: none !important;
+}
+
+.all-categories .swiper-button-prev, .all-categories .swiper-button-next{
+    height: 36px;
+    width: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    transition: all 0.4s;
+}
+
+.all-categories .swiper-button-prev:after , .all-categories .swiper-button-next:after{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #0007;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.4s;
+}
+
+.all-categories .swiper-button-prev:hover ,.all-categories .swiper-button-next:hover{
+    height: 100%;
+    width: 40px;
+}
+
+.all-categories .swiper-button-prev:hover{
+    left: 0;
+}
+
+.all-categories .swiper-button-next:hover{
+    right: 0;
+}
+
+.all-categories .swiper-button-next:hover::after,
+.all-categories .swiper-button-prev:hover::after {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.395);
+    font-size: 18px;
+}

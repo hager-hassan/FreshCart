@@ -1,0 +1,20 @@
+.hero .swiper-button-next:after, .hero .swiper-rtl ,.hero .swiper-button-prev:after {
+    content: none !important;
+}
+
+.hero .swiper-pagination-bullet{
+  transition: all 0.4s !important;
+}
+
+.hero .swiper-pagination-bullet-active{
+  background-color: var(--color-main-color) !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+@media (width >= 64rem /* 1024p */) {
+.hero .swiper-pagination-bullet-active{
+    width: 12px !important;
+    height: 12px !important;
+  }
+}

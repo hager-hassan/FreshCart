@@ -1,0 +1,18 @@
+.product .swiper-button-next:after,
+.product .swiper-button-prev:after,
+.product .swiper-pagination-bullets
+{
+    display: none;
+}
+
+
+
+.product .second-swiper .swiper-slide{
+    border: solid 3px transparent;
+    transition: all 0.4s;
+}
+
+.product .second-swiper .swiper-slide-active,
+.product .second-swiper .swiper-slide:hover{
+    border: solid 3px var(--color-main-color);
+}
