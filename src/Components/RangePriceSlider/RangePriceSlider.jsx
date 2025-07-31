@@ -34,7 +34,7 @@ export default function RangePriceSlider({staticMaxPrice , staticMinPrice , maxP
       </div>
 
 
-      <div className="flex justify-between mt-3 text-sm font-semibold text-main-color-hover">
+      <div className="text-xs flex justify-between mt-3 font-semibold text-main-color-hover sm:text-sm">
         <span>
           Min: <span id="minValue" className='text-gray-700'>EGP {minPrice}</span>
         </span>
