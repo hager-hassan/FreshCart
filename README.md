@@ -1,12 +1,89 @@
-# React + Vite
+# FreshCart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FreshCart is a modern and responsive *eCommerce web application* built with React. It allows users to browse, filter, and purchase products easily. Users can create accounts, add items to their wishlist or shopping cart, and place orders using cash or online payment methods.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## Expanding the ESLint configuration
+FreshCart provides a seamless shopping experience where users can:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Browse products by *brand* or *category*
+- Filter items by *price range*
+- Sort products by *ascending or descending price*
+- Manage their *shopping cart* and *wishlist*
+- Create an account, login, and manage personal data
+- Place *cash* or *online orders*
+- View their previous orders and track them
+
+---
+
+## Live Demo
+
+Coming soon: [FreshCart on Netlify](https://your-deployed-link.netlify.app)
+
+---
+
+## Technologies Used
+
+### Frontend
+- React
+- React Router DOM
+- Tailwind CSS
+- DaisyUI
+- Formik
+- Yup
+- Axios
+- SwiperJS
+- SweetAlert2
+- React Hot Toast
+- React Icons
+
+### Tooling & Environment
+- Vite
+- ESLint
+
+---
+
+## Features
+
+- Product filtering by:
+  - Brand
+  - Category
+  - Price range
+  - Sorting by ascending/descending price
+- Cart management:
+  - Add, remove, update quantity
+  - Proceed to checkout
+- Wishlist management
+- Authentication:
+  - Signup, login, logout
+  - Forgot/reset/update password
+  - Update personal data
+- Orders:
+  - Place orders with cash or online (Stripe integration)
+  - View all placed orders
+- Responsive design for mobile & desktop
+- Real-time feedback through toast messages and alerts
+- Form validation for better user experience
+- Reusable components for scalability and maintainability
+- User-friendly product browsing and interaction experience
+
+---
+
+## Installation & Setup
+
+To run the project locally:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/freshcart.git
+
+# 2. Navigate to the project folder
+cd freshcart
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
