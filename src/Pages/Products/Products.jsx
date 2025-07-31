@@ -269,7 +269,7 @@ export default function Products() {
         <div
           className={`
         absolute z-6666 -bottom-12 top-21 transition-all duration-1000
-        ${isSidebarOpened ? "left-0" : "left-[-280px]"} 
+        ${isSidebarOpened ? "left-0" : "left-[-250px]"} 
         lg:static lg:-mb-12.5`}
         >
           <aside className="min-h-[800px] h-full relative bg-light-color p-7 lg:rounded-se">
