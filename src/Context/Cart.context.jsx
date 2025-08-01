@@ -73,7 +73,7 @@ export default function CartContextProvider({ children }) {
       await getCart();
       toast.success("Product added successfully");
     } catch (error) {
-      const message = error.response?.data?.message;
+      const message = error.response?.data?.message || 'Please try again';
         toast.error(message);
     } finally {
       toast.dismiss(loadingToast);

@@ -195,10 +195,12 @@ export default function CheckOut({ setShowCheckOut }) {
   }
 
   async function handelOrder() {
-    if(allAddresses.length > 0 && formik.values.phone !== phone || formik.values.city !== city || formik.values.address !== address){
+    if(allAddresses.length >= 1 && (formik.values.phone !== phone || formik.values.city !== city || formik.values.address !== address)){
       await deleteAddress(allAddresses[0].id);
+      await createAddress();
     }
-    if (creatingAddress || formik.values.phone !== phone || formik.values.city !== city || formik.values.address !== address) {
+
+    if (creatingAddress) {
       await createAddress();
     }
 
@@ -230,6 +232,7 @@ export default function CheckOut({ setShowCheckOut }) {
               type="tel"
               name="phone"
               id="floating_tel"
+              readOnly={isLoading}
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
@@ -255,6 +258,7 @@ export default function CheckOut({ setShowCheckOut }) {
               type="text"
               name="city"
               id="floating_city"
+              readOnly={isLoading}
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
@@ -283,6 +287,7 @@ export default function CheckOut({ setShowCheckOut }) {
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
+              readOnly={isLoading}
               value={formik.values.address}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -303,6 +308,7 @@ export default function CheckOut({ setShowCheckOut }) {
 
         <div className="mt-10 flex items-center justify-center gap-7">
           <button
+            disabled={isLoading}
             name="cashOrder"
             type="submit"
             className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded transition-all duration-500 md:text-base hover:bg-main-color-hover"
@@ -314,7 +320,9 @@ export default function CheckOut({ setShowCheckOut }) {
           </button>
 
           <button
+            disabled={isLoading}
             type="submit"
+            name="onlineOrder"
             className="font-bold text-sm cursor-pointer border-2 border-main-color text-main-color px-3.5 py-1.5 rounded transition-all duration-500 md:text-base hover:text-main-color-hover hover:border-main-color-hover"
             onClick={() => {
               clickedButton.current = "online";
