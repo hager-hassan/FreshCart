@@ -169,8 +169,9 @@ export default function CheckOut({ setShowCheckOut }) {
   async function onlineOrder() {
     const loadingToast = toast.loading("wait..");
     try {
+      const url = window.location.origin;
       const {data} = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://efreshcart.netlify.app`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${url}`,
         {
           shippingAddress: {
             details: formik.values.address,
