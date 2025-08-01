@@ -170,7 +170,7 @@ export default function CheckOut({ setShowCheckOut }) {
     const loadingToast = toast.loading("wait..");
     try {
       const {data} = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://688ac5560bda030008c791d6--efreshcart.netlify.app`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://688c54ba73577a0008bbbf98--efreshcart.netlify.app`,
         {
           shippingAddress: {
             details: formik.values.address,
