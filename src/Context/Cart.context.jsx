@@ -8,6 +8,7 @@ export const CartContext = createContext(null);
 export default function CartContextProvider({ children }) {
   const { token } = useContext(AuthContext);
   const [isCartLoading, setIsCartLoading] = useState(false);
+  const [isCartEditing, setIsCartEditing] = useState(false);
   const [numOfCartItems, setNumOfCartItems] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
@@ -57,6 +58,7 @@ export default function CartContextProvider({ children }) {
 
   async function addProductToCart(id) {
     const loadingToast = toast.loading("adding..");
+    setIsCartEditing(true);
     try {
         await axios.post(
         url,
@@ -77,11 +79,13 @@ export default function CartContextProvider({ children }) {
         toast.error(message);
     } finally {
       toast.dismiss(loadingToast);
+      setIsCartEditing(false);
     }
   }
 
   async function removeProductFromCart(id) {
     const loadingToast = toast.loading("removing..");
+    setIsCartEditing(true);
     try {
       const urlForDeletion = `${url}/${id}`;
       const { data } = await axios.delete(urlForDeletion, {
@@ -97,6 +101,7 @@ export default function CartContextProvider({ children }) {
         toast.error(message);
     } finally {
       toast.dismiss(loadingToast);
+      setIsCartEditing(false);
     }
   }
 
@@ -143,7 +148,7 @@ export default function CartContextProvider({ children }) {
   return (
     <CartContext.Provider
       value={{ cart, numOfCartItems, cartId, addProductToCart, isCartLoading, getCart,
-      removeProductFromCart, updateCount, quantity, totalCartPrice, removeAllProducts}}
+      removeProductFromCart, updateCount, quantity, totalCartPrice, removeAllProducts , isCartEditing}}
     >
       {children}
     </CartContext.Provider>

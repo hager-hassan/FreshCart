@@ -116,20 +116,18 @@ export default function CheckOut({ setShowCheckOut }) {
     } catch (error) {
       console.log(error?.response?.data?.message || error.message || error);
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   }
 
   async function deleteAddress(id) {
     setIsLoading(true);
     try {
-      axios.delete(`https://ecommerce.routemisr.com/api/v1/addresses/${id}`,
-        {
-          headers:{
-            token: token,
-          }
-        }
-      );
+      axios.delete(`https://ecommerce.routemisr.com/api/v1/addresses/${id}`, {
+        headers: {
+          token: token,
+        },
+      });
     } catch (error) {
       console.log(error?.response?.data?.message || error.message || error);
     } finally {
@@ -170,7 +168,7 @@ export default function CheckOut({ setShowCheckOut }) {
     const loadingToast = toast.loading("wait..");
     try {
       const url = window.location.origin;
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${url}`,
         {
           shippingAddress: {
@@ -185,7 +183,7 @@ export default function CheckOut({ setShowCheckOut }) {
           },
         }
       );
-      
+
       window.location = data.session.url;
     } catch (error) {
       console.log(error?.response?.data?.message || error.message || error);
@@ -196,7 +194,12 @@ export default function CheckOut({ setShowCheckOut }) {
   }
 
   async function handelOrder() {
-    if(allAddresses.length >= 1 && (formik.values.phone !== phone || formik.values.city !== city || formik.values.address !== address)){
+    if (
+      allAddresses.length >= 1 &&
+      (formik.values.phone !== phone ||
+        formik.values.city !== city ||
+        formik.values.address !== address)
+    ) {
       await deleteAddress(allAddresses[0].id);
       await createAddress();
     }
@@ -208,7 +211,7 @@ export default function CheckOut({ setShowCheckOut }) {
     if (clickedButton.current === "cash") {
       await cashOrder();
       getCart();
-    } else if(clickedButton.current === "online"){
+    } else if (clickedButton.current === "online") {
       await onlineOrder();
       getCart();
     }
@@ -217,6 +220,66 @@ export default function CheckOut({ setShowCheckOut }) {
   useEffect(() => {
     getUserAddress();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
+          <header>
+            <h2 className="text-main-color-hover font-bold text-xl text-center py-5">
+              Check Out
+            </h2>
+          </header>
+
+          <form className="max-w-md mx-auto">
+            <div className="animate-pulse">
+              <div className="w-full mb-5">
+                <span 
+                className="text-sm text-gray-500">
+                  Phone
+                </span>
+                <div className="w-full h-0.5 bg-gray-300 mt-1.5"></div>
+              </div>
+
+              <div className="w-full mb-5">
+                <span 
+                className="text-sm text-gray-500">
+                  City
+                </span>
+                <div className="w-full h-0.5 bg-gray-300 mt-1.5"></div>
+              </div>
+
+              <div className="w-full mb-5">
+                <span 
+                className="text-sm text-gray-500">
+                  Address
+                </span>
+                <div className="w-full h-0.5 bg-gray-300 mt-1.5"></div>
+              </div>
+            </div>
+
+            <div className="mt-10 flex items-center justify-center gap-7">
+              <button
+                disabled
+                className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded transition-all duration-500 md:text-base hover:bg-main-color-hover"
+              >
+                Cash Order
+              </button>
+
+              <button
+                disabled
+                className="font-bold text-sm cursor-pointer border-2 border-main-color text-main-color px-3.5 py-1.5 rounded transition-all duration-500 md:text-base hover:text-main-color-hover hover:border-main-color-hover"
+              >
+                Online Order
+              </button>
+            </div>
+          </form>
+
+          <div className="absolute top-5 right-5 cursor-pointer">
+            <IoCloseCircle className="text-3xl text-red-700" />
+          </div>
+      </div>
+    );
+  }
 
   return (
     <div className="check-out w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
@@ -227,13 +290,12 @@ export default function CheckOut({ setShowCheckOut }) {
       </header>
 
       <form onSubmit={formik.handleSubmit} className="max-w-md mx-auto">
-        <div className={isLoading ? "animate-pulse" : ""}>
+        <div>
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="tel"
               name="phone"
               id="floating_tel"
-              readOnly={isLoading}
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
@@ -259,7 +321,6 @@ export default function CheckOut({ setShowCheckOut }) {
               type="text"
               name="city"
               id="floating_city"
-              readOnly={isLoading}
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
@@ -288,7 +349,6 @@ export default function CheckOut({ setShowCheckOut }) {
               className="block py-2.5 px-0 w-full text-sm text-gray-700 font-semibold bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-main-color-hover peer"
               placeholder=" "
               required
-              readOnly={isLoading}
               value={formik.values.address}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -309,7 +369,6 @@ export default function CheckOut({ setShowCheckOut }) {
 
         <div className="mt-10 flex items-center justify-center gap-7">
           <button
-            disabled={isLoading}
             name="cashOrder"
             type="submit"
             className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded transition-all duration-500 md:text-base hover:bg-main-color-hover"
@@ -321,7 +380,6 @@ export default function CheckOut({ setShowCheckOut }) {
           </button>
 
           <button
-            disabled={isLoading}
             type="submit"
             name="onlineOrder"
             className="font-bold text-sm cursor-pointer border-2 border-main-color text-main-color px-3.5 py-1.5 rounded transition-all duration-500 md:text-base hover:text-main-color-hover hover:border-main-color-hover"

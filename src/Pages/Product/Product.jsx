@@ -12,8 +12,8 @@ import fetchProduct from '../../Utils/productUtils'
 import { CartContext } from "../../Context/Cart.context";
 
 export default function Product() {
-  const {addToWishList, removeFromWishList, productsIDs} = useContext(WishContext);
-  const {addProductToCart} = useContext(CartContext);
+  const {addToWishList, removeFromWishList, productsIDs , isWishListEditing} = useContext(WishContext);
+  const {addProductToCart , isCartEditing} = useContext(CartContext);
   const [isProductInFavorites, setIsProductInFavorites] = useState(false);
   const { productId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -262,9 +262,9 @@ export default function Product() {
           <div>
             <button className="bg-main-color px-6 py-3 rounded-lg cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
             onClick={() =>{
-              if(isProductInFavorites){
+              if(isProductInFavorites && !isWishListEditing){
                 removeFromWishList(productId);
-              } else{
+              } else if(!isProductInFavorites && !isWishListEditing){
                 addToWishList(productId);
               }
             }}
@@ -281,7 +281,11 @@ export default function Product() {
             <button
               className="bg-main-color py-2 text-white uppercase rounded-lg w-full flex items-center justify-center gap-2  
             cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
-            onClick={() => addProductToCart(productId)}
+            onClick={() => {
+              if(!isCartEditing){
+                addProductToCart(productId);
+              }
+            }}
             >
               <FaCartPlus className="text-lg" /> <span>add to cart</span>
             </button>

@@ -19,16 +19,17 @@ export default function Card({
   priceAfterDiscount,
   quantity,
 }) {
-  const { addToWishList, removeFromWishList, productsIDs } = useContext(WishContext);
-  const [isProductInFavorites, setIsProductInFavorites] = useState(false);  
-  const {addProductToCart} = useContext(CartContext);
+  const { addToWishList, removeFromWishList, productsIDs, isWishListEditing } =
+    useContext(WishContext);
+  const [isProductInFavorites, setIsProductInFavorites] = useState(false);
+  const { addProductToCart, isCartEditing } = useContext(CartContext);
   const navigate = useNavigate();
 
   function goTOProduct(id) {
     navigate(`/product/${id}`);
   }
 
-  function checkIfFavorite(){
+  function checkIfFavorite() {
     setIsProductInFavorites(productsIDs.includes(id));
   }
 
@@ -37,9 +38,14 @@ export default function Card({
   }, [productsIDs]);
 
   return (
-    <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm relative">
+    <div className="max-w-xs sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm relative">
       <div>
-        <img className="rounded-t-lg" src={imageCover} alt={title} />
+        <img
+          onClick={() => goTOProduct(id)}
+          className="rounded-t-lg w-full cursor-pointer"
+          src={imageCover}
+          alt={title}
+        />
       </div>
 
       <div className="p-5">
@@ -85,23 +91,54 @@ export default function Card({
             </span>
           </div>
         </div>
+
+        <div className="mt-4 flex items-center justify-between lg:hidden">
+          <div>
+            <button
+              type="button"
+              className="uppercase text-white bg-main-color text-xs font-semibold px-2 py-1.5 rounded cursor-pointer"
+              onClick={() => {
+                if (!isCartEditing) {
+                  addProductToCart(id);
+                }
+              }}
+            >
+              add to cart
+            </button>
+          </div>
+          <div
+            onClick={() => {
+              if (isProductInFavorites && !isWishListEditing) {
+                removeFromWishList(id);
+              } else if (!isProductInFavorites && !isWishListEditing) {
+                addToWishList(id);
+              }
+            }}
+          >
+            {isProductInFavorites ? (
+              <FaHeart className="text-red-600 text-lg cursor-pointer" />
+            ) : (
+              <FaRegHeart className="text-red-600 text-lg cursor-pointer" />
+            )}
+          </div>
+        </div>
       </div>
 
       <div
-        className="group layer cursor-pointer absolute top-0 bottom-0 left-0 right-0 flex flex-row items-center justify-center gap-2.5 text-white opacity-0 transition-all duration-900 hover:opacity-100"
-        onClick={() => goTOProduct(id)} 
+        className="hidden lg:flex group layer cursor-pointer absolute top-0 bottom-0 left-0 right-0 flex-row items-center justify-center gap-2.5 text-white opacity-0 transition-all duration-900 hover:opacity-100"
+        onClick={() => goTOProduct(id)}
       >
         <div
           className="transition-all duration-600 group-hover:-translate-y-[100px]"
-          onClick={(e) => e.stopPropagation()} 
+          onClick={(e) => e.stopPropagation()}
         >
           <div
             className="flex items-center justify-center rounded-full bg-main-color opacity-80 w-[48px] h-[48px] transition-all duration-500 hover:opacity-100 hover:bg-main-color-hover"
-            onClick={(e) =>{
-              e.stopPropagation(); 
-              if(isProductInFavorites){
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isProductInFavorites && !isWishListEditing) {
                 removeFromWishList(id);
-              } else{
+              } else if (!isProductInFavorites && !isWishListEditing) {
                 addToWishList(id);
               }
             }}
@@ -113,19 +150,21 @@ export default function Card({
             )}
           </div>
         </div>
-        
+
         <div
           className="transition-all duration-1000 group-hover:-translate-y-[100px]"
           onClick={(e) => {
             e.stopPropagation();
-            addProductToCart(id);
+            if (!isCartEditing) {
+              addProductToCart(id);
+            }
           }}
         >
           <div className="flex items-center justify-center rounded-full bg-main-color opacity-80 w-[48px] h-[48px] transition-all duration-500 hover:opacity-100 hover:bg-main-color-hover">
             <MdAddShoppingCart className="text-lg" />
           </div>
         </div>
-        
+
         <div
           className="transition-all duration-1400 group-hover:-translate-y-[100px]"
           onClick={(e) => {
