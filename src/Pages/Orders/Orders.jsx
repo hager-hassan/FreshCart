@@ -61,71 +61,77 @@ export default function Orders() {
         <div className="mt-8 animate-pulse">
           <div className="p-5 border-2 border-gray-300 rounded-lg bg-gray-50">
             <header className="flex flex-col gap-4 mb-7">
-              <div className="flex flex-col gap-2">
-                <div className="h-6 w-23 bg-gray-300 rounded"></div>
-                <div className="h-8 w-48 bg-gray-300 rounded"></div>
+              <div className="flex flex-col gap-2.5">
+                <div className="h-5.5 w-23 bg-gray-300 rounded"></div>
+                <div className="h-6 w-30 bg-gray-300 rounded sm:h-7 sm:w-39 lg:h-8 lg:w-45"></div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="bg-gray-300 rounded w-25 h-3.5 mb-1"></div>
-                  <div className="bg-gray-300 rounded w-12 h-3.5"></div>
+              <div className="grid grid-cols-5 sm:flex sm:items-center sm:justify-between sm:gap-1">
+                <div className="col-span-2">
+                  <div className="bg-gray-300 rounded w-25 h-3.5 mb-1 sm:w-29.5 sm:h-4.5"></div>
+                  <div className="bg-gray-300 rounded w-8 h-3.5 sm:w-10 sm:h-4"></div>
                 </div>
                 <div>
-                  <div className="bg-gray-300 rounded w-7 h-3.5 mb-1"></div>
-                  <div className="bg-gray-300 rounded w-20 h-3.5"></div>
+                  <div className="bg-gray-300 rounded w-7 h-3.5 mb-1 sm:h-4.5 sm:w-8.5"></div>
+                  <div className="bg-gray-300 rounded w-15 h-3.5 sm:w-17 sm:h-4"></div>
                 </div>
-                <div>
-                  <div className="bg-gray-300 rounded w-26 h-3.5 mb-1"></div>
-                  <div className="bg-gray-300 rounded w-8 h-3.5"></div>
+                <div className="col-span-2 flex flex-col items-end">
+                  <div>
+                    <div className="bg-gray-300 rounded w-26 h-3.5 mb-1 sm:w-30 sm:h-4.5"></div>
+                    <div className="bg-gray-300 rounded w-6 h-3.5 sm:w-7 sm:h-4"></div>
+                  </div>
                 </div>
               </div>
             </header>
 
             <div className="grid grid-cols-12 gap-4 pb-2.5 mb-5 xl:gap-1">
-              <div className="col-span-4 md:col-span-3 lg:col-span-2 rounded-lg w-30 h-41 bg-gray-300 lg:w-35 lg:h-47.5 xl:w-40 xl:h-54.5"></div>
+              <div className="col-span-4 bg-gray-300 rounded-lg w-25 h-32 sm:h-41 sm:w-30 md:col-span-3 lg:col-span-2 lg:w-35 lg:h-47.5 xl:w-40 xl:h-54.5"></div>
 
-              <div className="col-span-8 flex flex-col justify-center gap-5 w-full md:col-span-9 lg:col-span-10">
-                <div className="bg-gray-300 rounded w-full h-6"></div>
+              <div className="col-span-8 flex flex-col justify-center gap-8 w-full md:col-span-9 lg:col-span-10">
+                <div className="bg-gray-300 rounded w-3/4 h-5 sm:h-6"></div>
 
                 <div className="flex items-center gap-3 sm:gap-5">
-                  <div className="flex gap-2">
-                    <div className="bg-gray-300 rounded w-15 h-5"></div>
-                    <div className="bg-gray-300 rounded w-4 h-5"></div>
+                  <div className="flex gap-2 flex-nowrap">
+                    <div className="bg-gray-300 rounded h-4 w-12.5 sm:w-15 sm:h-5"></div>
+                    <div className="bg-gray-300 rounded w-3 h-4 sm:w-4 sm:h-5"></div>
                   </div>
 
                   <div className="bg-gray-300 h-5 w-0.5"></div>
 
-                  <div className="flex gap-2">
-                    <div className="bg-gray-300 rounded w-9 h-5"></div>
-                    <div className="bg-gray-300 rounded w-18.5 h-5"></div>
+                  <div className="flex gap-2 flex-nowrap">
+                    <div className="bg-gray-300 rounded h-4 w-7.5 sm:w-9 sm:h-5"></div>
+                    <div className="bg-gray-300 rounded h-4 w-12.5 sm:w-18.5 sm:h-5"></div>
                   </div>
                 </div>
               </div>
             </div>
+
+
             <div className="w-full bg-gray-300 h-[1px]"></div>
 
-            <div className="mt-10 px-3 flex items-center justify-between">
-              <div className="space-y-3">
-                <div className="font-semibold flex items-center gap-4 text-sm">
-                  <div className=" bg-gray-300 rounded w-35 h-5"></div>
-                  <div className=" bg-gray-300 rounded w-4 h-5"></div>
+            <div className="mt-10 px-3 grid grid-cols-4 gap-1">
+              <div className="space-y-3 col-span-3">
+                <div className="font-semibold flex items-center gap-1 sm:gap-4">
+                  <div className=" bg-gray-300 rounded w-29.5 h-4 sm:w-36 sm:h-5"></div>
+                  <div className=" bg-gray-300 rounded w-4 h-4 sm:h-5 sm:w-6"></div>
                 </div>
-                <div className="font-semibold flex items-center gap-4 text-sm">
-                  <div className=" bg-gray-300 rounded w-35 h-5"></div>
-                  <div className=" bg-gray-300 rounded w-11 h-5"></div>
+                <div className="font-semibold flex items-center gap-1 sm:gap-4">
+                  <div className=" bg-gray-300 rounded w-29.5 h-4 sm:w-36 sm:h-5"></div>
+                  <div className=" bg-gray-300 rounded w-9 h-4 sm:w-11 sm:h-5"></div>
                 </div>
-                <div className="font-semibold flex items-center gap-4 text-sm">
-                  <div className=" bg-gray-300 rounded w-35 h-5"></div>
-                  <div className=" bg-gray-300 rounded w-11 h-5"></div>
+                <div className="font-semibold flex items-center gap-1 sm:gap-4">
+                  <div className=" bg-gray-300 rounded w-29.5 h-4 sm:w-36 sm:h-5"></div>
+                  <div className=" bg-gray-300 rounded h-4 w-9 sm:w-11 sm:h-5"></div>
                 </div>
-                <div className="font-semibold flex items-center gap-4 text-sm">
-                  <div className=" bg-gray-300 rounded w-35 h-5"></div>
-                  <div className=" bg-gray-300 rounded w-20 h-5"></div>
+                <div className="font-semibold flex items-center gap-1 sm:gap-4">
+                  <div className=" bg-gray-300 rounded w-29.5 h-4 sm:w-36 sm:h-6"></div>
+                  <div className=" bg-gray-300 rounded w-12.5 h-4 sm:w-16 sm:h-6"></div>
                 </div>
               </div>
 
-              <div className="bg-gray-300 rounded w-27 h-5"></div>
+              <div className="flex items-center justify-end">
+                <div className="bg-gray-300 rounded w-17.5 h-5 sm:w-27"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -166,35 +172,35 @@ export default function Orders() {
                 <header className="flex flex-col gap-4 mb-7">
                   <div className="flex flex-col gap-1">
                     <span className="text-main-color-hover">Thank You!</span>
-                    <span className="font-bold text-xl text-gray-900 lg:text-2xl">
+                    <span className="font-bold text-gray-900 sm:text-xl lg:text-2xl">
                       It's on the way!
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-1">
                     <div>
-                      <span className="text-xs font-semibold text-gray-900">
+                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
                         Tracking number
                       </span>
-                      <h2 className="text-main-color-hover font-semibold text-sm">
+                      <h2 className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
                         {order.TrackingNumber}
                       </h2>
                     </div>
 
                     <div>
-                      <span className="text-xs font-semibold text-gray-900">
+                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
                         Date
                       </span>
-                      <p className="text-main-color-hover font-semibold text-sm">
+                      <p className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
                         {order.createdAt}
                       </p>
                     </div>
 
                     <div>
-                      <span className="text-xs font-semibold text-gray-900">
+                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
                         Payment method
                       </span>
-                      <p className="text-main-color-hover font-semibold text-sm">
+                      <p className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
                         {order.paymentMethod}
                       </p>
                     </div>
@@ -224,8 +230,8 @@ export default function Orders() {
                         <div className="flex items-center gap-5">
                           <div>
                             <span className="text-xs font-semibold text-gray-900 sm:text-sm">
-                              Quantity
-                              <span className="inline-block ps-2 text-gray-600">
+                              <span className="inline-block pe-2">Quantity</span>
+                              <span className="inline-block text-gray-600">
                                 {product.quantity}
                               </span>
                             </span>
@@ -235,8 +241,8 @@ export default function Orders() {
 
                           <div>
                             <span className="text-xs font-semibold text-gray-900 sm:text-sm">
-                              Price
-                              <span className="inline-block ps-2 text-gray-600">
+                              <span className="inline-block pe-2">Price</span>
+                              <span className=" inline-block text-gray-600">
                                 EGP {product.price}
                               </span>
                             </span>
@@ -247,33 +253,33 @@ export default function Orders() {
                   );
                 })}
 
-                <div className="mt-10 px-3 grid grid-cols-3 gap-1">
-                  <div className="space-y-3 col-span-2">
-                    <div className="text-xs font-semibold flex items-center gap-4 sm:text-sm">
-                      <span className="text-main-color w-31.5 sm:w-36">
+                <div className="mt-10 px-3 grid grid-cols-4 gap-1">
+                  <div className="space-y-3 col-span-3">
+                    <div className="text-xs font-semibold flex items-center gap-1 sm:gap-4 sm:text-sm">
+                      <span className="text-main-color w-29.5 sm:w-36">
                         Products Quantity :
                       </span>
                       <span className="text-gray-600">
                         {order.products.length}
                       </span>
                     </div>
-                    <div className="text-xs font-semibold flex items-center gap-4 sm:text-sm">
-                      <span className="text-main-color w-31.5 sm:w-36">
+                    <div className="text-xs font-semibold flex items-center gap-1 sm:gap-4 sm:text-sm">
+                      <span className="text-main-color w-29.5 sm:w-36">
                         Shipping Price :
                       </span>
                       <span className="text-gray-600">
                         EGP {order.shippingPrice}
                       </span>
                     </div>
-                    <div className="text-xs font-semibold flex items-center gap-4 sm:text-sm">
-                      <span className="text-main-color w-31.5 sm:w-36">Taxes :</span>
+                    <div className="text-xs font-semibold flex items-center gap-1 sm:gap-4 sm:text-sm">
+                      <span className="text-main-color w-29.5 sm:w-36">Taxes :</span>
                       <span className="text-gray-600">
                         EGP {order.taxPrice}
                       </span>
                     </div>
 
-                    <div className="text-sm font-semibold flex items-center gap-4 sm:text-base">
-                      <span className="text-main-color w-31.5 sm:w-36">
+                    <div className="text-xs font-semibold flex items-center gap-1 sm:gap-4 sm:text-base">
+                      <span className="text-main-color w-29.5 sm:w-36">
                         Total Order Price :
                       </span>
                       <span className="text-gray-600">
@@ -284,11 +290,11 @@ export default function Orders() {
 
                   <div className="w-full flex items-center justify-end">
                     {order.isDelivered ? (
-                      <span className="text-sm sm:text-base font-bold text-main-color">
+                      <span className="text-xs sm:text-base font-bold text-main-color text-center">
                         Delivered
                       </span>
                     ) : (
-                      <span className="text-sm sm:text-base font-bold text-red-700">
+                      <span className="text-xs sm:text-base font-bold text-red-700 text-center">
                         Not Delivered
                       </span>
                     )}

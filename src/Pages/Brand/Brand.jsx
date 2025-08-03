@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import NoProductFound from "../NoProductFound/NoProductFound";
 import { useEffect, useState } from "react";
 import Card from "./../../Components/Card/Card";
-import fetchProducts from '../../Utils/productsUtils'
+import fetchProducts from "../../Utils/productsUtils";
 
 export default function Brand() {
   const { brandId } = useParams();
@@ -26,7 +26,15 @@ export default function Brand() {
   }
 
   useEffect(() => {
-    getProducts({limit: '', page : '', brand : [brandId], category : [] ,sort : "+price", maxPrice: '' , minPrice: ''});
+    getProducts({
+      limit: "",
+      page: "",
+      brand: [brandId],
+      category: [],
+      sort: "+price",
+      maxPrice: "",
+      minPrice: "",
+    });
   }, []);
 
   if (isLoading) {
@@ -34,8 +42,8 @@ export default function Brand() {
       <section className="w-full pb-12 pt-21">
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {Array.from({ length: 10 }).map((_, index) => (
-            <div className="h-full" key={index}>
-              <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
+            <div className="h-ful" key={index}>
+              <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
                 <div className="animate-pulse">
                   <div className="rounded-t-lg bg-gray-300 h-75"></div>
                 </div>
@@ -53,17 +61,10 @@ export default function Brand() {
                       <div className="bg-gray-300 h-4 rounded w-1/4"></div>
                     </div>
                   </div>
-                </div>
 
-                <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-row items-center justify-center gap-2.5 opacity-0">
-                  <div className="animate-pulse">
-                    <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
-                  </div>
-                  <div className="animate-pulse">
-                    <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
-                  </div>
-                  <div className="animate-pulse">
-                    <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
+                  <div className="flex items-center justify-between mt-4 animate-pulse lg:hidden">
+                    <div className="rounded bg-gray-300 h-6 w-25"></div>
+                    <div className="rounded bg-gray-300 h-4.5 w-5"></div>
                   </div>
                 </div>
               </div>
@@ -73,7 +74,7 @@ export default function Brand() {
       </section>
     );
   }
-  
+
   return (
     <>
       {!isBrandAvailable ? (

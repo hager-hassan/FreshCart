@@ -16,8 +16,8 @@ export default function Products() {
   const [isProductsLoading, setIsProductsLoading] = useState(false);
   const [hasFetchedOnce, setHasFetchedOnce] = useState(false);
   const [numberOfPages, setNumberOfPages] = useState(0);
-  const [staticMinPrice , setStaticMinPrice] = useState(0);
-  const [staticMaxPrice , setStaticMaxPrice] = useState(0);
+  const [staticMinPrice, setStaticMinPrice] = useState(0);
+  const [staticMaxPrice, setStaticMaxPrice] = useState(0);
   const [page, setPage] = useState(1);
   const [checkedBrands, setCheckedBrands] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
@@ -25,7 +25,7 @@ export default function Products() {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [params, setParams] = useState({
-    limit: '8',
+    limit: "8",
     page: page,
     brand: checkedBrands,
     category: checkedCategories,
@@ -90,21 +90,21 @@ export default function Products() {
 
   function handlePriceChange(event) {
     const value = Number(event.target.value);
-    if(event.target.id === 'minRange'){
+    if (event.target.id === "minRange") {
       setMinPrice(value);
       setPage(1);
       setParams((prev) => ({
         ...prev,
-        page:1,
-        minPrice:value,
+        page: 1,
+        minPrice: value,
       }));
-    } else if(event.target.id === 'maxRange'){
+    } else if (event.target.id === "maxRange") {
       setMaxPrice(value);
       setPage(1);
       setParams((prev) => ({
         ...prev,
-        page:1,
-        maxPrice:value,
+        page: 1,
+        maxPrice: value,
       }));
     }
   }
@@ -155,9 +155,9 @@ export default function Products() {
       setIsProductsLoading(true);
     }
     try {
-      const {products} = await fetchProducts(parameters);
+      const { products } = await fetchProducts(parameters);
 
-      const priceArr = products.map((product) =>{
+      const priceArr = products.map((product) => {
         return product.price;
       });
 
@@ -200,7 +200,6 @@ export default function Products() {
     }
   }, [params]);
 
-
   if (isLoading) {
     return (
       <section className="w-full pt-21">
@@ -208,10 +207,10 @@ export default function Products() {
           <div className="h-full w-full bg-gray-300 animate-pulse rounded-se"></div>
 
           <div className="lg:col-span-3 lg:pe-15">
-            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {Array.from({ length: 8 }).map((_, index) => (
-                <div className="h-full" key={index}>
-                  <div className="max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
+                <div className="h-ful" key={index}>
+                  <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
                     <div className="animate-pulse">
                       <div className="rounded-t-lg bg-gray-300 h-75"></div>
                     </div>
@@ -229,17 +228,10 @@ export default function Products() {
                           <div className="bg-gray-300 h-4 rounded w-1/4"></div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-row items-center justify-center gap-2.5 opacity-0">
-                      <div className="animate-pulse">
-                        <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
-                      </div>
-                      <div className="animate-pulse">
-                        <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
-                      </div>
-                      <div className="animate-pulse">
-                        <div className="flex items-center justify-center rounded-full bg-gray-300 opacity-80 w-12 h-12"></div>
+                      <div className="flex items-center justify-between mt-4 animate-pulse lg:hidden">
+                        <div className="rounded bg-gray-300 h-6 w-25"></div>
+                        <div className="rounded bg-gray-300 h-4.5 w-5"></div>
                       </div>
                     </div>
                   </div>
@@ -339,9 +331,12 @@ export default function Products() {
                     Price Range :
                   </h2>
 
-                  <RangePriceSlider 
-                  staticMinPrice={staticMinPrice} staticMaxPrice={staticMaxPrice}
-                  minPrice={minPrice} maxPrice={maxPrice}  handlePriceChange={handlePriceChange}
+                  <RangePriceSlider
+                    staticMinPrice={staticMinPrice}
+                    staticMaxPrice={staticMaxPrice}
+                    minPrice={minPrice}
+                    maxPrice={maxPrice}
+                    handlePriceChange={handlePriceChange}
                   />
                 </div>
 

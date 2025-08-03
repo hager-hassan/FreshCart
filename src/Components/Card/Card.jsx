@@ -38,7 +38,7 @@ export default function Card({
   }, [productsIDs]);
 
   return (
-    <div className="max-w-xs sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm relative">
+    <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-sm relative">
       <div>
         <img
           onClick={() => goTOProduct(id)}
