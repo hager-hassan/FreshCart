@@ -35,7 +35,7 @@ export default function Categories() {
           <h2 className='text-center text-gray-300 text-lg py-2 tracking-[1px] font-semibold border-[1px] border-gray-200 border-l-0 border-r-0 animate-pulse'>Shop by category</h2>
         </header>
       
-        <div className='pb-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+        <div className='pb-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:gap-y-10'>
           {
             Array.from({length: 10}).map((_,index)=>{
               return(
@@ -62,7 +62,7 @@ export default function Categories() {
           <h2 className='text-center text-main-color text-lg py-2 tracking-[1px] font-semibold border-[1px] border-gray-200 border-l-0 border-r-0'>Shop by category</h2>
         </header>
 
-        <div className='pb-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
+        <div className='pb-12 grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:gap-y-10'>
           { categories &&
             categories.map((category) => (
                 <div key={category.id}

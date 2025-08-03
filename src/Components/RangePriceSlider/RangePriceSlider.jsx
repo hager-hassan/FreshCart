@@ -36,10 +36,10 @@ export default function RangePriceSlider({staticMaxPrice , staticMinPrice , maxP
 
       <div className="text-xs flex justify-between gap-0.5 mt-3 font-semibold text-main-color-hover sm:text-sm">
         <span>
-          Min: <span id="minValue" className='text-gray-700'>EGP {minPrice}</span>
+          Min: <span id="minValue" className='text-gray-700 inline-block'>EGP {minPrice}</span>
         </span>
         <span>
-          Max: <span id="maxValue" className='text-gray-700'>EGP {maxPrice}</span>
+          Max: <span id="maxValue" className='text-gray-700 inline-block'>EGP {maxPrice}</span>
         </span>
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function AuthContextProvider({ children }) {
     }
   }
 
-  useEffect(() => {
+ useEffect(() => {
     verifyToken();
   }, []);
 
