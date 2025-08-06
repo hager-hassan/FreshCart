@@ -467,8 +467,8 @@ export default function Products() {
                   cursor-pointer
                   data-[active=true]:bg-main-color-hover
                   `,
-                next: "rotate-y-180 text-xl bg-main-color transition-all duration-500 rounded text-white py-0.5 cursor-pointer hover:bg-main-color-hover",
-                prev: "text-xl bg-main-color transition-all duration-500 rounded text-white py-0.5 cursor-pointer hover:bg-main-color-hover",
+                next: "rotate-y-180 text-xl bg-main-color transition-all duration-500 rounded text-white py-1.5 cursor-pointer hover:bg-main-color-hover",
+                prev: "text-xl bg-main-color transition-all duration-500 rounded text-white py-1.5 cursor-pointer hover:bg-main-color-hover",
                 wrapper: "gap-2",
               }}
             />
