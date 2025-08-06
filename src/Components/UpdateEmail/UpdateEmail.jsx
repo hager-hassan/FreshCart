@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 export default function UpdateEmail({ setShowUpdateEmail }) {
   const { token } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDataSending, setIsDataSending] = useState(false);
 
   const validationSchema = object({
     name: string()
@@ -41,6 +42,7 @@ export default function UpdateEmail({ setShowUpdateEmail }) {
 
   async function updateUserData() {
     setIsLoading(true);
+    setIsDataSending(true);
     try {
       await axios.put(
         "https://ecommerce.routemisr.com/api/v1/users/updateMe/",
@@ -65,6 +67,7 @@ export default function UpdateEmail({ setShowUpdateEmail }) {
       toast.error(error.response.data.errors.msg);
     } finally {
       setIsLoading(false);
+      setIsDataSending(false);
     }
   }
 
@@ -158,6 +161,7 @@ export default function UpdateEmail({ setShowUpdateEmail }) {
           <button
             name="cashOrder"
             type="submit"
+            disabled={isDataSending}
             className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded 
                 transition-all duration-500 md:text-base hover:bg-main-color-hover"
           >

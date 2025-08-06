@@ -4,12 +4,12 @@ import { object, string, ref } from "yup";
 import { AuthContext } from "../../Context/Auth.context";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { BiHide , BiShow } from "react-icons/bi";
 
 
 export default function UpdatePassword({ setShowUpdatePass, logout }) {
   const { token } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDataSending, setIsDataSending] = useState(false);
 
   const validationSchema = object({
     currentPassword: string().required("! This field required"),
@@ -41,6 +41,7 @@ export default function UpdatePassword({ setShowUpdatePass, logout }) {
 
   async function updatePassword() {
     setIsLoading(true);
+    setIsDataSending(true);
     try {
       await axios.put(
         "https://ecommerce.routemisr.com/api/v1/users/changeMyPassword",
@@ -66,6 +67,7 @@ export default function UpdatePassword({ setShowUpdatePass, logout }) {
       toast.error(error.response.data.errors.msg);
     } finally {
       setIsLoading(false);
+      setIsDataSending(false);
     }
   }
 
@@ -159,6 +161,7 @@ export default function UpdatePassword({ setShowUpdatePass, logout }) {
           <button
             name="cashOrder"
             type="submit"
+            disabled={isDataSending}
             className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded 
                 transition-all duration-500 md:text-base hover:bg-main-color-hover"
           >
