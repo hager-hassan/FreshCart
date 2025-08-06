@@ -6,6 +6,7 @@ import { TiDelete } from "react-icons/ti";
 import CheckOut from "../../Components/CheckOut/CheckOut";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 export default function Cart() {
@@ -21,6 +22,8 @@ export default function Cart() {
   } = useContext(CartContext);
   const [isIDUpdating, setIsIDUpdating] = useState(null);
   const [showCheckOut, setShowCheckOut] = useState(false);
+  const [isRemovingFromCart, setIsRemovingFromCart] = useState(false);
+  const [isClearingCart, setIsClearingCart] = useState(false);
   const navigate = useNavigate();
 
   async function changeCount(id, count) {
@@ -30,7 +33,8 @@ export default function Cart() {
   }
 
   async function clearCart(){
-    const result = await Swal.fire({
+    try {
+      const result = await Swal.fire({
           icon: "question",
           title: "Clear Cart",
           confirmButtonText: "Yes",
@@ -41,8 +45,26 @@ export default function Cart() {
         });
     
         if (result.isConfirmed) {
-          removeAllProducts();
+          setIsClearingCart(true);
+          await removeAllProducts();
         }
+    } catch (error) {
+      console.log(error?.response?.data?.message || error.message || error);
+    } finally{
+      setIsClearingCart(false);
+    }
+  }
+
+  async function handleRemoveFromCart(id) {
+    setIsRemovingFromCart(true);
+    try {
+      await removeProductFromCart(id);
+    } catch (error) {
+      const message = error.response?.data?.message || "Please try again";
+      toast.error(message);
+    } finally {
+      setIsRemovingFromCart(false);
+    }
   }
 
   if (isCartLoading) {
@@ -106,6 +128,7 @@ export default function Cart() {
                 className="text-white font-semibold text-sm bg-red-700 rounded px-4 py-1.5 cursor-pointer
                 flex items-center gap-1
                 lg:text-base"
+                disabled={isClearingCart}
                 onClick={() => {
                   clearCart();
                 }}
@@ -235,7 +258,8 @@ export default function Cart() {
                       <div className="flex justify-end items-start">
                         <button
                           type="button"
-                          onClick={() => removeProductFromCart(product.id)}
+                          disabled={isRemovingFromCart}
+                          onClick={() => handleRemoveFromCart(product.id)}
                         >
                           <TiDelete className="text-2xl cursor-pointer text-red-700 lg:text-[28px]" />
                         </button>

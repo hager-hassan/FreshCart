@@ -10,14 +10,12 @@ export default function WishContextProvider({ children }) {
   const { token } = useContext(AuthContext);
   const [productsIDs, setProductsIDs] = useState([]);
   const [isWishListLoading, setIsWishListLoading] = useState(false);
-  const [isWishListEditing, setIsWishListEditing] = useState(false);
   const url = "https://ecommerce.routemisr.com/api/v1/wishlist";
   const [wishList, setWishList] = useState([]);
 
 
   async function addToWishList(productID) {
     let loadingToast = toast.loading("adding..");
-    setIsWishListEditing(true);
     try {
       const {data} = await axios.post(
         url,
@@ -43,13 +41,11 @@ export default function WishContextProvider({ children }) {
       toast.error(message);
     } finally{
       toast.dismiss(loadingToast);
-      setIsWishListEditing(false);
     }
   }
 
   async function removeFromWishList(productID) {
     let loadingToast = toast.loading("removing..");
-    setIsWishListEditing(true);
     try {
       let urlWithId = url+`/${productID}`;
 
@@ -75,7 +71,6 @@ export default function WishContextProvider({ children }) {
       toast.error(message);
     } finally{
       toast.dismiss(loadingToast);
-      setIsWishListEditing(false);
     }
   }
 
@@ -119,7 +114,7 @@ export default function WishContextProvider({ children }) {
 
   return (
     <WishContext.Provider 
-    value={{ wishList, getWishList, addToWishList, productsIDs, removeFromWishList, isWishListLoading , isWishListEditing}}>
+    value={{ wishList, getWishList, addToWishList, productsIDs, removeFromWishList, isWishListLoading }}>
       {children}
     </WishContext.Provider>
   );

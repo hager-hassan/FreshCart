@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext , useState } from "react";
 import { WishContext } from "../../Context/Wish.context";
 import { IoHeartCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,9 @@ export default function WishList() {
   const { wishList, removeFromWishList, isWishListLoading } =
     useContext(WishContext);
   const { addProductToCart } = useContext(CartContext);
+  const [isRemovingFromWishList, setIsRemovingFromWishList] = useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
   const navigate = useNavigate();
 
   async function addProduct(id) {
@@ -27,23 +30,43 @@ export default function WishList() {
     });
 
     if (result.isConfirmed) {
-      removeFromWishList(id);
+      await removeFromWishList(id);
     }
   }
 
-  console.log(wishList);
+  async function handleRemoveFromWishList(id) {
+    setIsRemovingFromWishList(true);
+    try {
+      await removeFromWishList(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again");
+    } finally {
+      setIsRemovingFromWishList(false);
+    }
+  }
+
+  async function handleAddToCart(id) {
+    setIsAddingToCart(true);
+    try {
+      await addProduct(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again");
+    } finally {
+      setIsAddingToCart(false);
+    }
+  }
 
   if (isWishListLoading) {
     return (
       <section className="w-full pt-21 mb-12">
         <div class="bg-light-color p-5 rounded-lg">
-         <header className="flex items-center gap-2">
-          <h2 className="text-main-color-hover font-black text-xl">
-            Favorite Products
-          </h2>
+          <header className="flex items-center gap-2">
+            <h2 className="text-main-color-hover font-black text-xl">
+              Favorite Products
+            </h2>
 
-          <IoHeartCircleSharp className="text-main-color-hover text-[22px]" />
-        </header>
+            <IoHeartCircleSharp className="text-main-color-hover text-[22px]" />
+          </header>
 
           <div class="pb-8 pt-4 mx-3 grid grid-cols-13 gap-6 animate-pulse">
             <div class="col-span-4 rounded-lg h-50 bg-gray-300 md:h-60 lg:h-40 lg:col-span-2 xl:h-50"></div>
@@ -99,7 +122,7 @@ export default function WishList() {
             {wishList.map((product, index) => {
               return (
                 <div
-                key={product.id}
+                  key={product.id}
                   className={
                     index === wishList.length - 1
                       ? "pb-8 pt-4 mx-3 grid grid-cols-13 gap-6"
@@ -171,8 +194,9 @@ export default function WishList() {
                       <div>
                         <button
                           className="bg-main-color mt-4 text-xs py-1 px-1.5 text-white uppercase rounded-lg flex items-center justify-center gap-2 lg:text-sm lg:px-2 lg:py-1.5
-                                    cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
-                          onClick={() => addProduct(product.id)}
+                          cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
+                          disabled={isAddingToCart}
+                          onClick={() => handleAddToCart(product.id)}
                         >
                           <FaCartPlus className="text-sm lg:text-base" />
                           <span>add to cart</span>
@@ -182,13 +206,12 @@ export default function WishList() {
                   </div>
 
                   <div>
-                    <button>
+                    <button
+                    disabled={isRemovingFromWishList}
+                    onClick={() => handleRemoveFromWishList(product.id)}
+                    >
                       <TiDelete
-                        className="text-2xl cursor-pointer text-red-700 lg:text-[28px]"
-                        onClick={() => {
-                          removeFromWishList(product.id);
-                        }}
-                      />
+                        className="text-2xl cursor-pointer text-red-700 lg:text-[28px]"/>
                     </button>
                   </div>
                 </div>

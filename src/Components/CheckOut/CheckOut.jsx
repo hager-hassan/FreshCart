@@ -17,6 +17,7 @@ export default function CheckOut({ setShowCheckOut }) {
   const [allAddresses, setAllAddresses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [creatingAddress, setCreatingAddress] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
   const clickedButton = useRef("");
   const navigate = useNavigate();
 
@@ -137,6 +138,7 @@ export default function CheckOut({ setShowCheckOut }) {
 
   async function cashOrder() {
     const loadingToast = toast.loading("wait..");
+    setIsCheckingOut(true);
     try {
       await axios.post(
         `https://ecommerce.routemisr.com/api/v1/orders/${cartId}`,
@@ -161,11 +163,13 @@ export default function CheckOut({ setShowCheckOut }) {
       toast.error("Please try again");
     } finally {
       toast.dismiss(loadingToast);
+      setIsCheckingOut(false);
     }
   }
 
   async function onlineOrder() {
     const loadingToast = toast.loading("wait..");
+    setIsCheckingOut(true);
     try {
       const url = window.location.origin;
       const { data } = await axios.post(
@@ -190,6 +194,7 @@ export default function CheckOut({ setShowCheckOut }) {
       toast.error("Please try again");
     } finally {
       toast.dismiss(loadingToast);
+      setIsCheckingOut(false);
     }
   }
 
@@ -371,6 +376,7 @@ export default function CheckOut({ setShowCheckOut }) {
           <button
             name="cashOrder"
             type="submit"
+            disabled={isCheckingOut}
             className="text-white text-sm font-bold cursor-pointer bg-main-color px-4 py-2 rounded transition-all duration-500 md:text-base hover:bg-main-color-hover"
             onClick={() => {
               clickedButton.current = "cash";
@@ -382,6 +388,7 @@ export default function CheckOut({ setShowCheckOut }) {
           <button
             type="submit"
             name="onlineOrder"
+            disabled={isCheckingOut}
             className="font-bold text-sm cursor-pointer border-2 border-main-color text-main-color px-3.5 py-1.5 rounded transition-all duration-500 md:text-base hover:text-main-color-hover hover:border-main-color-hover"
             onClick={() => {
               clickedButton.current = "online";

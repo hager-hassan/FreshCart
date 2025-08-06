@@ -10,13 +10,17 @@ import { Autoplay } from "swiper/modules";
 import { WishContext } from "../../Context/Wish.context";
 import fetchProduct from '../../Utils/productUtils'
 import { CartContext } from "../../Context/Cart.context";
+import toast from "react-hot-toast";
 
 export default function Product() {
-  const {addToWishList, removeFromWishList, productsIDs , isWishListEditing} = useContext(WishContext);
-  const {addProductToCart , isCartEditing} = useContext(CartContext);
+  const {addToWishList, removeFromWishList, productsIDs} = useContext(WishContext);
+  const {addProductToCart} = useContext(CartContext);
   const [isProductInFavorites, setIsProductInFavorites] = useState(false);
   const { productId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isAddingToWishList, setIsAddingToWishList] = useState(false);
+  const [isRemovingFromWishList, setIsRemovingFromWishList] = useState(false);
   const [productDetails, setProductDetails] = useState({});
   const swiperRef = useRef(null);
   const secondSwiperRef = useRef(null);
@@ -49,6 +53,40 @@ export default function Product() {
 
   function checkIfFavorite(){
     setIsProductInFavorites(productsIDs.includes(productId));
+  }
+
+  async function handleAddToCart(id) {
+    setIsAddingToCart(true);
+    try {
+      await addProductToCart(id);
+    } catch (error) {
+      const message = error.response?.data?.message || "Please try again";
+      toast.error(message);
+    } finally {
+      setIsAddingToCart(false);
+    }
+  }
+
+    async function handleAddTotWishList(id) {
+    setIsAddingToWishList(true);
+    try {
+      await addToWishList(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again")
+    } finally {
+      setIsAddingToWishList(false);
+    }
+  }
+
+  async function handleRemoveFromWishList(id) {
+    setIsRemovingFromWishList(true);
+    try {
+      await removeFromWishList(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again")
+    } finally {
+      setIsRemovingFromWishList(false);
+    }
   }
 
   useEffect(() => {
@@ -262,17 +300,17 @@ export default function Product() {
           <div>
             <button className="bg-main-color px-6 py-3 rounded-lg cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
             onClick={() =>{
-              if(isProductInFavorites && !isWishListEditing){
-                removeFromWishList(productId);
-              } else if(!isProductInFavorites && !isWishListEditing){
-                addToWishList(productId);
+              if (isProductInFavorites && !isRemovingFromWishList) {
+                handleRemoveFromWishList(productId);
+              } else if (!isProductInFavorites && !isAddingToWishList) {
+                handleAddTotWishList(productId);
               }
             }}
             >
               {isProductInFavorites ?
-              <FaHeart className="text-red-600"/>
+              <FaHeart className="text-red-600 dark:text-red-600"/>
               :
-              <FaRegHeart className="text-white"/>
+              <FaRegHeart className="text-white dark:text-white"/>
               }
             </button>
           </div>
@@ -281,9 +319,9 @@ export default function Product() {
             <button
               className="bg-main-color py-2 text-white uppercase rounded-lg w-full flex items-center justify-center gap-2  
             cursor-pointer transition-all duration-500 hover:bg-main-color-hover"
-            onClick={() => {
-              if(!isCartEditing){
-                addProductToCart(productId);
+            onClick={() =>{
+              if(!isAddingToCart){
+                handleAddToCart(productId);
               }
             }}
             >

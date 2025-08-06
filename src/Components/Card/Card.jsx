@@ -19,10 +19,13 @@ export default function Card({
   priceAfterDiscount,
   quantity,
 }) {
-  const { addToWishList, removeFromWishList, productsIDs, isWishListEditing } =
+  const { addToWishList, removeFromWishList, productsIDs } =
     useContext(WishContext);
   const [isProductInFavorites, setIsProductInFavorites] = useState(false);
-  const { addProductToCart, isCartEditing } = useContext(CartContext);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const [isAddingToWishList, setIsAddingToWishList] = useState(false);
+  const [isRemovingFromWishList, setIsRemovingFromWishList] = useState(false);
+  const { addProductToCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   function goTOProduct(id) {
@@ -31,6 +34,39 @@ export default function Card({
 
   function checkIfFavorite() {
     setIsProductInFavorites(productsIDs.includes(id));
+  }
+
+  async function handleAddToCart() {
+    setIsAddingToCart(true);
+    try {
+      await addProductToCart(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again")
+    } finally {
+      setIsAddingToCart(false);
+    }
+  }
+
+  async function handleAddTotWishList() {
+    setIsAddingToWishList(true);
+    try {
+      await addToWishList(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again")
+    } finally {
+      setIsAddingToWishList(false);
+    }
+  }
+
+  async function handleRemoveFromWishList() {
+    setIsRemovingFromWishList(true);
+    try {
+      await removeFromWishList(id);
+    } catch (error) {
+      console.log(error.response?.data?.message || "Please try again")
+    } finally {
+      setIsRemovingFromWishList(false);
+    }
   }
 
   useEffect(() => {
@@ -96,22 +132,19 @@ export default function Card({
           <div>
             <button
               type="button"
+              disabled={isAddingToCart}
               className="uppercase text-white bg-main-color text-xs font-semibold px-2 py-1.5 rounded cursor-pointer"
-              onClick={() => {
-                if (!isCartEditing) {
-                  addProductToCart(id);
-                }
-              }}
+              onClick={handleAddToCart}
             >
               add to cart
             </button>
           </div>
           <div
             onClick={() => {
-              if (isProductInFavorites && !isWishListEditing) {
-                removeFromWishList(id);
-              } else if (!isProductInFavorites && !isWishListEditing) {
-                addToWishList(id);
+              if (isProductInFavorites && !isRemovingFromWishList) {
+                handleRemoveFromWishList(id);
+              } else if (!isProductInFavorites && !isAddingToWishList) {
+                handleAddTotWishList(id);
               }
             }}
           >
@@ -136,10 +169,10 @@ export default function Card({
             className="flex items-center justify-center rounded-full bg-main-color opacity-80 w-[48px] h-[48px] transition-all duration-500 hover:opacity-100 hover:bg-main-color-hover"
             onClick={(e) => {
               e.stopPropagation();
-              if (isProductInFavorites && !isWishListEditing) {
-                removeFromWishList(id);
-              } else if (!isProductInFavorites && !isWishListEditing) {
-                addToWishList(id);
+              if (isProductInFavorites && !isRemovingFromWishList) {
+                handleRemoveFromWishList(id);
+              } else if (!isProductInFavorites && !isAddingToWishList) {
+                handleAddTotWishList(id);
               }
             }}
           >
@@ -155,8 +188,8 @@ export default function Card({
           className="transition-all duration-1000 group-hover:-translate-y-[100px]"
           onClick={(e) => {
             e.stopPropagation();
-            if (!isCartEditing) {
-              addProductToCart(id);
+            if (!isAddingToCart) {
+              handleAddToCart();
             }
           }}
         >
