@@ -10,6 +10,7 @@ import { AuthContext } from '../../Context/Auth.context';
 
 export default function Login() {
   const [isPassHidden , setIsPassHidden] = useState(true);
+  const [isLoggingIn , setIsLoggingIn] = useState(false);
   const {setToken , setUserEmail } = useContext(AuthContext);
 
   function handlePass(){
@@ -32,7 +33,7 @@ export default function Login() {
 
   async function login(values) {
     let loadingToast = toast.loading("logging in..");
-
+    setIsLoggingIn(true);
     try {
     const {data} = await axios.post(
       "https://ecommerce.routemisr.com/api/v1/auth/signin",
@@ -52,6 +53,7 @@ export default function Login() {
     } 
     finally{
       toast.dismiss(loadingToast);
+      setIsLoggingIn(false);
     }
   }
 
@@ -103,7 +105,13 @@ export default function Login() {
           
 
           <div className="mb-0 md:flex justify-between items-center">
-            <button className='btn-primary uppercase text-[13px] lg:text-[15px]' type='submit'>login</button>
+            <button 
+            className='btn-primary uppercase text-[13px] lg:text-[15px]' 
+            type='submit'
+            disabled={isLoggingIn}
+            >
+                login
+            </button>
             <div>
               <span className="text-sm text-gray-600 inline-block font-bold pt-3 md:pt-0">You don't have an account? <Link to='/signup' className="text-main-color hover:text-main-color-hover transition-all duration-500">signup</Link> </span>
             </div>

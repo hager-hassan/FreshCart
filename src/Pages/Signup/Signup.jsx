@@ -9,11 +9,13 @@ import { BiHide , BiShow } from "react-icons/bi";
 
 export default function Signup() {
   const [isPassHidden, setIsPassHidden] = useState(true);
+  const [isSigningUp, setIsSigningUp] = useState(false);
   const [isRePassHidden, setIsRePassHidden] = useState(true);
 
   function handlePass() {
     setIsPassHidden(!isPassHidden);
   }
+
   function handleRePass() {
     setIsRePassHidden(!isRePassHidden);
   }
@@ -72,7 +74,7 @@ export default function Signup() {
 
   async function signup(values) {
     let loadingToast = toast.loading("Wait..");
-
+    setIsSigningUp(true);
     try {
       const response = await axios.post(
         "https://ecommerce.routemisr.com/api/v1/auth/signup",
@@ -96,6 +98,7 @@ export default function Signup() {
     } 
     finally {
       toast.dismiss(loadingToast);
+      setIsSigningUp(false);
     }
   }
 
@@ -239,6 +242,7 @@ export default function Signup() {
             <button
               className="btn-primary uppercase text-[13px] lg:text-[15px]"
               type="submit"
+              disabled={isSigningUp}
             >
               signup
             </button>
