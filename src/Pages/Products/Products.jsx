@@ -6,6 +6,11 @@ import fetchAllCategoriesWithAvailability from "../../Utils/categoriesUtils";
 import fetchProducts from "../../Utils/productsUtils";
 import ProductList from "../../Components/ProductList/ProductList";
 import RangePriceSlider from "../../Components/RangePriceSlider/RangePriceSlider";
+import {
+  Pagination,
+  PaginationItem,
+  PaginationCursor,
+} from "@heroui/pagination";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -437,29 +442,36 @@ export default function Products() {
             numberOfPages={numberOfPages}
           />
 
-          <div className="w-full mt-8">
-            <ul className="flex items-center justify-center gap-2">
-              {Array.from(
-                { length: numberOfPages },
-                (_, index) => index + 1
-              ).map((num) => (
-                <li
-                  key={num}
-                  onClick={() => {
-                    setParams((prev) => ({ ...prev, page: num }));
-                    setPage(num);
-                  }}
-                  className={`rounded px-3 py-1 cursor-pointer font-semibold text-white transition-all duration-500
-                  ${
-                    page === num
-                      ? "bg-main-color-hover "
-                      : "bg-main-color  hover:bg-main-color-hover"
-                  }`}
-                >
-                  {num}
-                </li>
-              ))}
-            </ul>
+          <div className="w-full flex items-center justify-center mt-8 overflow-hidden">
+            <Pagination
+              total={numberOfPages}
+              page={page}
+              onChange={(num) => {
+                setPage(num);
+                setParams((prev) => ({ ...prev, page: num }));
+              }}
+              showControls
+              loop
+              color="default" 
+              siblings={0}
+              classNames={{
+                item: `
+                  bg-main-color
+                  hover:bg-main-color-hover 
+                  text-white 
+                  font-semibold 
+                  transition-all 
+                  duration-500 
+                  rounded 
+                  px-3 py-1 
+                  cursor-pointer
+                  data-[active=true]:bg-main-color-hover
+                  `,
+                next: "rotate-y-180 text-xl bg-main-color transition-all duration-500 rounded text-white py-0.5 cursor-pointer hover:bg-main-color-hover",
+                prev: "text-xl bg-main-color transition-all duration-500 rounded text-white py-0.5 cursor-pointer hover:bg-main-color-hover",
+                wrapper: "gap-2",
+              }}
+            />
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/encode-sans-expanded": "^5.2.6",
+    "@heroui/pagination": "^2.2.22",
     "@tailwindcss/vite": "^4.1.10",
     "axios": "^1.10.0",
     "formik": "^2.4.6",
