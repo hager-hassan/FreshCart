@@ -18,7 +18,7 @@ export default function Profile({logout}) {
     <>
       <div className="dropdown dropdown-start lg:dropdown-center">
         <div tabIndex={0} role="button mb-2 absolute">
-          <RxAvatar className="text-slate-blue mb-1.5 text-3xl inline-block cursor-pointer font-extrabold 
+          <RxAvatar className="text-slate-blue dark:text-white mb-1.5 text-3xl inline-block cursor-pointer font-extrabold 
           transition-all duration-500 hover:text-main-color lg:mb-0 lg:text-[25px]" />
         </div>
         <ul
@@ -37,7 +37,7 @@ export default function Profile({logout}) {
           </li>
           <li className="rounded-none" onClick={() => navigate("/wishList")}>
             <span
-              className="py-2.5 rounded-none text-slate-blue font-semibold hover:text-main-color
+              className="py-2.5 rounded-none text-slate-blue dark:text-white font-semibold hover:text-main-color
           lg:border-b-[1px] lg:border-b-gray-300 lg:py-3.5"
             >
               <FaHeart className="text-lg" />
@@ -48,7 +48,7 @@ export default function Profile({logout}) {
           className="rounded-none"
           onClick={() => setShowUpdateEmail(true)}>
             <span
-              className="py-2.5 rounded-none text-slate-blue font-semibold hover:text-main-color
+              className="py-2.5 rounded-none text-slate-blue dark:text-white font-semibold hover:text-main-color
               lg:border-b-[1px] lg:border-b-gray-300 lg:py-3.5"
             >
               <MdEmail className="text-lg" />
@@ -67,7 +67,7 @@ export default function Profile({logout}) {
             <span className="h-[1px] my-2 bg-gray-300 rounded-none p-0"></span>
           </li>
           <li className="rounded-none lg:hidden" onClick={() => logout()}>
-            <span className="py-2.5 mb-2 rounded-none text-slate-blue font-semibold hover:text-main-color">
+            <span className="py-2.5 mb-2 rounded-none text-slate-blue dark:text-white font-semibold hover:text-main-color">
               LogOut
             </span>
           </li>

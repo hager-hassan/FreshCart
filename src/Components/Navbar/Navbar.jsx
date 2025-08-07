@@ -83,7 +83,7 @@ export default function Navbar() {
             <ul className="py-3 lg:flex justify-center space-x-4 lg:py-0">
               <li className="lg:flex items-center justify-center">
                 <NavLink
-                  className="nav-link text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                  className="nav-link text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                   to="/"
                 >
                   Home
@@ -91,7 +91,7 @@ export default function Navbar() {
               </li>
               <li className="lg:flex items-center justify-center">
                 <NavLink
-                  className="nav-link text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                  className="nav-link text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                   to="/products"
                 >
                   Products
@@ -99,7 +99,7 @@ export default function Navbar() {
               </li>
               <li className="lg:flex items-center justify-center">
                 <NavLink
-                  className="nav-link text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                  className="nav-link text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                   to="/categories"
                 >
                   Categories
@@ -107,7 +107,7 @@ export default function Navbar() {
               </li>
               <li className="lg:flex items-center justify-center">
                 <NavLink
-                  className="nav-link text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                  className="nav-link text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                   to="/brands"
                 >
                   Brands
@@ -115,7 +115,7 @@ export default function Navbar() {
               </li>
               <li className="lg:flex items-center justify-center">
                 <NavLink
-                  className="nav-link text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                  className="nav-link text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                   to="/allorders"
                 >
                   Orders
@@ -137,7 +137,7 @@ export default function Navbar() {
               <>
                 <li className="lg:flex items-center justify-center">
                   <NavLink
-                    className="nav-link login text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                    className="nav-link login text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                     to="/login"
                   >
                     Login
@@ -145,7 +145,7 @@ export default function Navbar() {
                 </li>
                 <li className="lg:flex items-center justify-center">
                   <NavLink
-                    className="nav-link signup text-slate-blue mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
+                    className="nav-link signup text-slate-blue dark:text-white mb-1.5 inline-block font-medium lg:mb-0 transition-all duration-500 hover:font-extrabold"
                     to="/signup"
                   >
                     Signup
@@ -176,7 +176,7 @@ export default function Navbar() {
                 </li>
 
                 <li
-                    className="hidden text-slate-blue mb-1.5 cursor-pointer font-extrabold 
+                    className="hidden text-slate-blue dark:text-white mb-1.5 cursor-pointer font-extrabold 
                     transition-all duration-500 hover:text-main-color lg:mb-0 lg:inline-block"
                     onClick={() => logout()}
                   >

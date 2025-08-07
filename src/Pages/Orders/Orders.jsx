@@ -172,14 +172,14 @@ export default function Orders() {
                 <header className="flex flex-col gap-4 mb-7">
                   <div className="flex flex-col gap-1">
                     <span className="text-main-color-hover">Thank You!</span>
-                    <span className="font-bold text-gray-900 sm:text-xl lg:text-2xl">
+                    <span className="font-bold text-gray-900 dark:text-white sm:text-xl lg:text-2xl">
                       It's on the way!
                     </span>
                   </div>
 
                   <div className="flex items-center justify-between gap-1">
                     <div>
-                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
+                      <span className="text-xs font-semibold text-gray-900 dark:text-white sm:text-sm">
                         Tracking number
                       </span>
                       <h2 className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
@@ -188,7 +188,7 @@ export default function Orders() {
                     </div>
 
                     <div>
-                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
+                      <span className="text-xs font-semibold text-gray-900 dark:text-white sm:text-sm">
                         Date
                       </span>
                       <p className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
@@ -197,7 +197,7 @@ export default function Orders() {
                     </div>
 
                     <div>
-                      <span className="text-xs font-semibold text-gray-900 sm:text-sm">
+                      <span className="text-xs font-semibold text-gray-900 dark:text-white sm:text-sm">
                         Payment method
                       </span>
                       <p className="text-main-color-hover text-[10px] font-semibold sm:text-xs">
@@ -222,27 +222,27 @@ export default function Orders() {
 
                       <div className="col-span-8 sm:col-span-9 lg:col-span-10 flex flex-col justify-center gap-5">
                         <div>
-                          <h3 className="text-sm font-semibold text-gray-900 whitespace-nowrap overflow-hidden text-ellipsis max-w-full sm:text-base">
+                          <h3 className="text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis max-w-full sm:text-base">
                             {product.title}
                           </h3>
                         </div>
 
                         <div className="flex items-center gap-5">
                           <div>
-                            <span className="text-xs font-semibold text-gray-900 sm:text-sm">
+                            <span className="text-xs font-semibold text-gray-900 dark:text-white sm:text-sm">
                               <span className="inline-block pe-2">Quantity</span>
-                              <span className="inline-block text-gray-600">
+                              <span className="inline-block text-gray-600 dark:text-gray-300">
                                 {product.quantity}
                               </span>
                             </span>
                           </div>
 
-                          <span className="text-gray-500">|</span>
+                          <span className="text-gray-500 dark:text-gray-300">|</span>
 
                           <div>
-                            <span className="text-xs font-semibold text-gray-900 sm:text-sm">
+                            <span className="text-xs font-semibold text-gray-900 dark:text-white sm:text-sm">
                               <span className="inline-block pe-2">Price</span>
-                              <span className=" inline-block text-gray-600">
+                              <span className=" inline-block text-gray-600 dark:text-gray-300">
                                 EGP {product.price}
                               </span>
                             </span>
@@ -259,7 +259,7 @@ export default function Orders() {
                       <span className="text-main-color w-29.5 sm:w-36">
                         Products Quantity :
                       </span>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 dark:text-gray-300">
                         {order.products.length}
                       </span>
                     </div>
@@ -267,13 +267,13 @@ export default function Orders() {
                       <span className="text-main-color w-29.5 sm:w-36">
                         Shipping Price :
                       </span>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 dark:text-gray-300">
                         EGP {order.shippingPrice}
                       </span>
                     </div>
                     <div className="text-xs font-semibold flex items-center gap-1 sm:gap-4 sm:text-sm">
                       <span className="text-main-color w-29.5 sm:w-36">Taxes :</span>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 dark:text-gray-300">
                         EGP {order.taxPrice}
                       </span>
                     </div>
@@ -282,7 +282,7 @@ export default function Orders() {
                       <span className="text-main-color w-29.5 sm:w-36">
                         Total Order Price :
                       </span>
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 dark:text-gray-300">
                         EGP {order.totalOrderPrice}
                       </span>
                     </div>

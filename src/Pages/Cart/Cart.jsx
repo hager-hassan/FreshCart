@@ -242,7 +242,7 @@ export default function Cart() {
                             </button>
                           </div>
                           <div className="text-end md:order-4 md:w-32">
-                            <p className="text-gray-700 font-semibold">
+                            <p className="text-gray-700 dark:text-white font-semibold">
                               EGP {product.price}
                             </p>
                           </div>
@@ -271,27 +271,27 @@ export default function Cart() {
             </div>
 
             <div className="mt-15 mx-auto space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:max-w-2xl xl:max-w-4xl">
-              <p className="text-xl font-semibold text-gray-800">
+              <p className="text-xl font-semibold text-gray-800 dark:text-white">
                 Order summary
               </p>
 
               <div className="space-y-4">
                 <div className="space-y-2">
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base text-gray-500">Cart Items</dt>
-                    <dd className="text-base font-medium text-gray-900">
+                    <dt className="text-base text-gray-500 dark:text-white">Cart Items</dt>
+                    <dd className="text-base font-medium text-gray-900 dark:text-white">
                       {numOfCartItems}
                     </dd>
                   </dl>
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base text-gray-500">Total Quantity</dt>
-                    <dd className="text-base font-medium text-gray-900">
+                    <dt className="text-base text-gray-500 dark:text-white">Total Quantity</dt>
+                    <dd className="text-base font-medium text-gray-900 dark:text-white">
                       {quantity}
                     </dd>
                   </dl>
                   <dl className="flex items-center justify-between gap-4">
-                    <dt className="text-base text-gray-500">Total Price</dt>
-                    <dd className="text-base font-medium text-gray-900">
+                    <dt className="text-base text-gray-500 dark:text-white">Total Price</dt>
+                    <dd className="text-base font-medium text-gray-900 dark:text-white">
                       EGP {totalCartPrice}
                     </dd>
                   </dl>
