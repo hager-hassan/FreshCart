@@ -95,7 +95,8 @@ export default function Home() {
           <h2
             className="relative text-center text-slate-blue font-black text-xl my-12 p-2 
           after:absolute after:bg-main-color after:h-[3px] after:w-1/2 after:bottom-0 after:left-1/2 after:-translate-x-1/2
-          sm:text-2xl lg:text-[26px]"
+          sm:text-2xl lg:text-[26px]
+          dark:text-red-500"
           >
             Shope now by popular products
           </h2>
