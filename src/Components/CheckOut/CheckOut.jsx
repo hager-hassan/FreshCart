@@ -7,6 +7,7 @@ import { object, string } from "yup";
 import { CartContext } from "../../Context/Cart.context";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import clickOutSideToClose from '../../Utils/clickOutSideToClose'
 
 export default function CheckOut({ setShowCheckOut }) {
   const { token, userName } = useContext(AuthContext);
@@ -18,7 +19,8 @@ export default function CheckOut({ setShowCheckOut }) {
   const [isLoading, setIsLoading] = useState(false);
   const [creatingAddress, setCreatingAddress] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const clickedButton = useRef("");
+  const clickedButton = useRef(null);
+  const componentRef = useRef(null);
   const navigate = useNavigate();
 
   const validationSchema = object({
@@ -223,7 +225,10 @@ export default function CheckOut({ setShowCheckOut }) {
   }
 
   useEffect(() => {
+    const closeListener = clickOutSideToClose(componentRef , () => setShowCheckOut(false));
     getUserAddress();
+
+    return closeListener;
   }, []);
 
   if (isLoading) {
@@ -287,7 +292,9 @@ export default function CheckOut({ setShowCheckOut }) {
   }
 
   return (
-    <div className="check-out w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
+    <div 
+    ref={componentRef}
+    className="check-out w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
       <header>
         <h2 className="text-main-color-hover font-bold text-xl text-center py-5">
           Check Out

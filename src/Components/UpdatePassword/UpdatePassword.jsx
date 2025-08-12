@@ -1,15 +1,16 @@
 import { useFormik } from "formik";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { object, string, ref } from "yup";
 import { AuthContext } from "../../Context/Auth.context";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import clickOutSideToClose from "../../Utils/clickOutSideToClose";
 
 export default function UpdatePassword({ setShowUpdatePass, logout }) {
   const { token } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [isDataSending, setIsDataSending] = useState(false);
+  const componentRef = useRef(null);
 
   const validationSchema = object({
     currentPassword: string().required("! This field required"),
@@ -71,8 +72,18 @@ export default function UpdatePassword({ setShowUpdatePass, logout }) {
     }
   }
 
+  useEffect(() => {
+    const closeListener = clickOutSideToClose(componentRef, () =>
+      setShowUpdatePass(false)
+    );
+
+    return closeListener;
+  }, []);
+
   return (
-    <div className="check-out w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
+    <div 
+    ref={componentRef}
+    className="check-out w-full h-fit mx-6 max-w-3xl bg-white rounded shadow-xl p-5 relative">
       <header>
         <h2 className="text-main-color-hover font-bold text-xl text-center py-5">
           Update Password
