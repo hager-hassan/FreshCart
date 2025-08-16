@@ -234,8 +234,6 @@ export default function Products() {
     }
   }, [params]);
 
-  console.log(params);
-
   if (isLoading) {
     return (
       <section className="w-full pt-21">
