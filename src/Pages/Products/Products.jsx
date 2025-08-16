@@ -24,13 +24,23 @@ export default function Products() {
   const [staticMinPrice, setStaticMinPrice] = useState(0);
   const [staticMaxPrice, setStaticMaxPrice] = useState(0);
   const [page, setPage] = useState(1);
+  const getLimitByWidth = () => {
+    const width = window.innerWidth;
+    if (width < 640) return 4;
+    if (width >= 640 && width < 768) return 8; // sm
+    if (width >= 768 && width < 1024) return 9; // md
+    if (width >= 1024 && width < 1280) return 12; // lg
+    if (width >= 1280 && width < 1536) return 15; // xl
+    return 20;
+  };
+  const [limit, setLimit] = useState(() => getLimitByWidth());
   const [checkedBrands, setCheckedBrands] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [sort, setSort] = useState("+price");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   const [params, setParams] = useState({
-    limit: "8",
+    limit: limit,
     page: page,
     brand: checkedBrands,
     category: checkedCategories,
@@ -195,8 +205,27 @@ export default function Products() {
     }
   }
 
+  function handleLimit() {
+    const newLimit = getLimitByWidth();
+    setLimit((prevLimit) => {
+      if (prevLimit === newLimit) return prevLimit;
+      setParams((prev) =>
+        prev.limit === newLimit ? prev : { ...prev, limit: newLimit }
+      );
+      return newLimit;
+    });
+  }
+
   useEffect(() => {
+    handleLimit();
+    const onResize = () => handleLimit();
+    window.addEventListener("resize", onResize);
+
     fetchAll();
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -205,15 +234,19 @@ export default function Products() {
     }
   }, [params]);
 
+  console.log(params);
+
   if (isLoading) {
     return (
       <section className="w-full pt-21">
         <div className="mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-5 xl:gap-7">
-          <div className="h-full w-full bg-gray-300 animate-pulse rounded-se"></div>
+          <div className="h-full w-full bg-gray-300 animate-pulse rounded-t"></div>
 
-          <div className="lg:col-span-3 lg:pe-15">
-            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {Array.from({ length: 8 }).map((_, index) => (
+          <div className="lg:col-span-3">
+            <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+              {Array.from({
+                length: hasFetchedOnce ? getLimitByWidth() : limit,
+              }).map((_, index) => (
                 <div className="h-ful" key={index}>
                   <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
                     <div className="animate-pulse">
@@ -234,7 +267,7 @@ export default function Products() {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between mt-4 animate-pulse lg:hidden">
+                      <div className="flex items-center justify-between mt-4 lg:hidden">
                         <div className="rounded bg-gray-300 h-6 w-25"></div>
                         <div className="rounded bg-gray-300 h-4.5 w-5"></div>
                       </div>
@@ -261,15 +294,15 @@ export default function Products() {
   }
 
   return (
-    <section className="w-full relative pt-21 mb-12 lg:static">
-      <div className="mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-5 xl:gap-7">
+    <section className="w-full pt-21 mb-12 lg:static">
+      <div className="lg:grid lg:grid-cols-4 lg:gap-5 xl:gap-7">
         <div
           className={`
         absolute z-6666 -bottom-12 top-21 transition-all duration-1000
-        ${isSidebarOpened ? "left-0" : "left-[-222px] sm:left-[-249px]"} 
+        ${isSidebarOpened ? "-left-3" : "-left-55.5 sm:-left-62.5"} 
         lg:static lg:-mb-12.5`}
         >
-          <aside className="min-h-[800px] h-full relative bg-light-color p-7 lg:rounded-se">
+          <aside className="min-h-[800px] h-full relative bg-light-color p-7 lg:rounded-t">
             <form className="space-y-5">
               <div>
                 <header className="mb-3">
@@ -435,7 +468,7 @@ export default function Products() {
           </aside>
         </div>
 
-        <div className="lg:col-span-3 lg:pe-15">
+        <div className="lg:col-span-3">
           <ProductList
             products={products}
             isProductsLoading={isProductsLoading}
@@ -452,7 +485,7 @@ export default function Products() {
               }}
               showControls
               loop
-              color="default" 
+              color="default"
               siblings={0}
               classNames={{
                 item: `

@@ -16,7 +16,7 @@ export default function Layout() {
   return (
     <>
       <Navbar/>  
-      <main className={`flex-1 flex flex-col items-center justify-center ${!isProductPage ? 'container' : ''}`}>
+      <main className={`flex-1 flex flex-col items-center justify-center container ${!isProductPage ? 'relative' : ''}`}>
         {loading ? <Loader/> 
         :
         <Outlet/>}

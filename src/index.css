@@ -92,7 +92,7 @@ li[aria-label="dots element"] {
   padding-block: 8px !important;
 }
 
-@media (width >= 64rem /* 1024p */) {
+@media (width >= 64rem /* 1024px */) {
   .nav-link:hover:not(.login):not(.signup)::after {
     width: 100% !important;
   }

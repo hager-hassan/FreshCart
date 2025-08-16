@@ -62,7 +62,7 @@ export default function Brand() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mt-4 animate-pulse lg:hidden">
+                  <div className="flex items-center justify-between mt-4 lg:hidden">
                     <div className="rounded bg-gray-300 h-6 w-25"></div>
                     <div className="rounded bg-gray-300 h-4.5 w-5"></div>
                   </div>

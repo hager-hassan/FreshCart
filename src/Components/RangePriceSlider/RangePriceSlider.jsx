@@ -25,7 +25,7 @@ export default function RangePriceSlider({staticMaxPrice , staticMinPrice , maxP
             handlePriceChange(event);
           }}
         />
-        <div className="relative w-full h-2 bg-gray-300 rounded-md">
+        <div className="relative w-full h-2 bg-gray-300 dark:bg-white rounded-md">
           <div
             id="rangeTrack"
             className="absolute h-2 bg-gradient-to-r from-main-color-hover to-main-color rounded-md"
