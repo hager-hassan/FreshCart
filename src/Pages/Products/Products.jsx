@@ -237,13 +237,13 @@ export default function Products() {
   if (isLoading) {
     return (
       <section className="w-full pt-21">
-        <div className="mx-auto sm:max-w-[620px] md:max-w-[720px] lg:max-w-full lg:grid lg:grid-cols-4 lg:gap-5 xl:gap-7">
+        <div className="lg:grid lg:grid-cols-4 lg:gap-5 xl:gap-7">
           <div className="h-full w-full bg-gray-300 animate-pulse rounded-t"></div>
 
           <div className="lg:col-span-3">
             <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
               {Array.from({
-                length: hasFetchedOnce ? getLimitByWidth() : limit,
+                length:limit,
               }).map((_, index) => (
                 <div className="h-ful" key={index}>
                   <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
@@ -471,6 +471,7 @@ export default function Products() {
             products={products}
             isProductsLoading={isProductsLoading}
             numberOfPages={numberOfPages}
+            getLimitByWidth={getLimitByWidth}
           />
 
           <div className="w-full flex items-center justify-center mt-8 overflow-hidden">
