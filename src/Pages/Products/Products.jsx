@@ -243,7 +243,7 @@ export default function Products() {
           <div className="lg:col-span-3">
             <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
               {Array.from({
-                length:limit,
+                length: limit,
               }).map((_, index) => (
                 <div className="h-ful" key={index}>
                   <div className="max-w-[290px] sm:max-w-sm mx-auto bg-white border border-gray-200 rounded-lg relative">
@@ -265,9 +265,11 @@ export default function Products() {
                         </div>
                       </div>
 
-                      <div className="flex items-center justify-between mt-4 lg:hidden">
-                        <div className="rounded bg-gray-300 h-6 w-25"></div>
-                        <div className="rounded bg-gray-300 h-4.5 w-5"></div>
+                      <div className="lg:hidden">
+                        <div className="flex items-center justify-between mt-4">
+                          <div className="rounded bg-gray-300 h-6 w-25"></div>
+                          <div className="rounded bg-gray-300 h-4.5 w-5"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
