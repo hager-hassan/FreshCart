@@ -31,7 +31,7 @@ export default function ProductList({ products, isProductsLoading, numberOfPages
                       <div className="lg:hidden">
                         <div className="flex items-center justify-between mt-4">
                           <div className="rounded bg-gray-300 h-6 w-25"></div>
-                          <div className="rounded bg-gray-300 h-4.5 w-5"></div>
+                          <div className="rounded bg-gray-300 h-5 w-5"></div>
                         </div>
                       </div>
                     </div>
