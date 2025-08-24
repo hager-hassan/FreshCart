@@ -31,6 +31,7 @@ FreshCart provides a seamless shopping experience where users can:
 - React Router DOM
 - Tailwind CSS
 - DaisyUI
+- HeroUI
 - Formik
 - Yup
 - Axios
