@@ -22,7 +22,6 @@ export default function Cart() {
   } = useContext(CartContext);
   const [isIDUpdating, setIsIDUpdating] = useState(null);
   const [showCheckOut, setShowCheckOut] = useState(false);
-  const [isRemovingFromCart, setIsRemovingFromCart] = useState(false);
   const [isClearingCart, setIsClearingCart] = useState(false);
   const navigate = useNavigate();
 
@@ -56,14 +55,11 @@ export default function Cart() {
   }
 
   async function handleRemoveFromCart(id) {
-    setIsRemovingFromCart(true);
     try {
       await removeProductFromCart(id);
     } catch (error) {
       const message = error.response?.data?.message || "Please try again";
       toast.error(message);
-    } finally {
-      setIsRemovingFromCart(false);
     }
   }
 
@@ -258,7 +254,6 @@ export default function Cart() {
                       <div className="flex justify-end items-start">
                         <button
                           type="button"
-                          disabled={isRemovingFromCart}
                           onClick={() => handleRemoveFromCart(product.id)}
                         >
                           <TiDelete className="text-2xl cursor-pointer text-red-700 lg:text-[28px]" />
